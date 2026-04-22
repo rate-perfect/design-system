@@ -1,10 +1,11 @@
 import Box from "@mui/material/Box";
 import Stack from "@mui/material/Stack";
 import MuiTypography from "@mui/material/Typography";
-import { Divider, Typography } from "@rate-perfect/beaconv2";
+import { Divider, Typography, useTheme } from "@rate-perfect/beaconv2";
 import ShowcaseCard from "../components/ShowcaseCard";
 
 export default function DividerSection() {
+  const theme = useTheme();
   return (
     <Stack spacing={4}>
       {/* Default */}
@@ -51,18 +52,19 @@ export default function DividerSection() {
       <ShowcaseCard
         title="Weights"
         code={`import { Divider } from "@rate-perfect/beaconv2";
+import Typography from "@mui/material/Typography";
 
 <Stack spacing={3}>
   <Box>
-    <Typography fontSize="sm" color="secondary">thin (default)</Typography>
+    <Typography variant="caption" color="text.secondary">thin (default)</Typography>
     <Divider weight="thin" spacing="0.5rem" />
   </Box>
   <Box>
-    <Typography fontSize="sm" color="secondary">medium</Typography>
+    <Typography variant="caption" color="text.secondary">medium</Typography>
     <Divider weight="medium" spacing="0.5rem" />
   </Box>
   <Box>
-    <Typography fontSize="sm" color="secondary">thick</Typography>
+    <Typography variant="caption" color="text.secondary">thick</Typography>
     <Divider weight="thick" spacing="0.5rem" />
   </Box>
 </Stack>`}
@@ -86,18 +88,20 @@ export default function DividerSection() {
       {/* Custom Color */}
       <ShowcaseCard
         title="Custom Color"
-        code={`import { Divider } from "@rate-perfect/beaconv2";
+        code={`import { Divider, useTheme } from "@rate-perfect/beaconv2";
+
+const theme = useTheme();
 
 <Stack spacing={2}>
-  <Divider color="var(--mui-palette-primary-main)" spacing="0.5rem" />
-  <Divider color="var(--mui-palette-error-main)" spacing="0.5rem" />
-  <Divider color="var(--mui-brand-success-main)" spacing="0.5rem" />
+  <Divider color={theme.palette.primary.main} spacing="0.5rem" />
+  <Divider color={theme.palette.error.main} spacing="0.5rem" />
+  <Divider color={theme.brand.success.main} spacing="0.5rem" />
 </Stack>`}
       >
         <Stack spacing={2}>
-          <Divider color="var(--mui-palette-primary-main)" spacing="0.5rem" />
-          <Divider color="var(--mui-palette-error-main)" spacing="0.5rem" />
-          <Divider color="var(--mui-brand-success-main)" spacing="0.5rem" />
+          <Divider color={theme.palette.primary.main} spacing="0.5rem" />
+          <Divider color={theme.palette.error.main} spacing="0.5rem" />
+          <Divider color={theme.brand.success.main} spacing="0.5rem" />
         </Stack>
       </ShowcaseCard>
 

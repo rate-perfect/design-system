@@ -37,7 +37,9 @@ export default function AutocompleteInputSection() {
       {/* Default */}
       <ShowcaseCard
         title="Default"
-        code={`import { AutocompleteInput } from "@rate-perfect/beaconv2";
+        code={`import { useState } from "react";
+import { AutocompleteInput } from "@rate-perfect/beaconv2";
+import type { AutocompleteOption } from "@rate-perfect/beaconv2";
 
 const options = [
   { id: "1", name: "Apple" },
@@ -45,12 +47,15 @@ const options = [
   { id: "3", name: "Cherry" },
 ];
 
+const [value, setValue] = useState<AutocompleteOption | null>(null);
+
 <AutocompleteInput
   label="Fruit"
   placeholder="Select a fruit..."
   options={options}
   value={value}
   onChange={(e, v) => setValue(v)}
+  sx={{ maxWidth: 360 }}
 />`}
       >
         <AutocompleteInput
@@ -159,13 +164,24 @@ const options = [
       {/* With Value */}
       <ShowcaseCard
         title="With Value"
-        code={`import { AutocompleteInput } from "@rate-perfect/beaconv2";
+        code={`import { useState } from "react";
+import { AutocompleteInput } from "@rate-perfect/beaconv2";
+import type { AutocompleteOption } from "@rate-perfect/beaconv2";
+
+const options = [
+  { id: "1", name: "Apple" },
+  { id: "2", name: "Banana" },
+  { id: "3", name: "Cherry" },
+];
+
+const [value, setValue] = useState<AutocompleteOption | null>(options[2]);
 
 <AutocompleteInput
   label="Pre-selected"
   options={options}
-  value={{ id: "3", name: "Cherry" }}
-  onChange={handleChange}
+  value={value}
+  onChange={(e, v) => setValue(v)}
+  sx={{ maxWidth: 360 }}
 />`}
       >
         <AutocompleteInput

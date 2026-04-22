@@ -50,7 +50,12 @@ export default function SelectSection() {
       {/* With placeholder */}
       <ShowcaseCard
         title="With Placeholder"
-        code={`<Select
+        code={`import { useState } from "react";
+import { Select } from "@rate-perfect/beaconv2";
+
+const [value, setValue] = useState("");
+
+<Select
   placeholder="Choose an option..."
   options={options}
   value={value}
@@ -70,10 +75,17 @@ export default function SelectSection() {
       {/* With label */}
       <ShowcaseCard
         title="With Label"
-        code={`<Select
+        code={`import { useState } from "react";
+import { Select } from "@rate-perfect/beaconv2";
+
+const [value, setValue] = useState("");
+
+<Select
   label="Country"
   placeholder="Select a country"
   options={options}
+  value={value}
+  onChange={(e) => setValue(e.target.value)}
 />`}
       >
         <Box sx={{ maxWidth: 300 }}>
@@ -90,10 +102,15 @@ export default function SelectSection() {
       {/* Sizes */}
       <ShowcaseCard
         title="Sizes"
-        code={`<Stack spacing={2}>
-  <Select size="sm" options={options} placeholder="Small" />
-  <Select size="md" options={options} placeholder="Medium (default)" />
-  <Select size="lg" options={options} placeholder="Large" />
+        code={`import { useState } from "react";
+import { Select } from "@rate-perfect/beaconv2";
+
+const [value, setValue] = useState("");
+
+<Stack spacing={2}>
+  <Select size="sm" options={options} placeholder="Small" value={value} onChange={(e) => setValue(e.target.value)} />
+  <Select size="md" options={options} placeholder="Medium (default)" value={value} onChange={(e) => setValue(e.target.value)} />
+  <Select size="lg" options={options} placeholder="Large" value={value} onChange={(e) => setValue(e.target.value)} />
 </Stack>`}
       >
         <Stack spacing={2} sx={{ maxWidth: 300 }}>
@@ -115,8 +132,13 @@ export default function SelectSection() {
       {/* Aligned with TextInput and Button */}
       <ShowcaseCard
         title="Aligned with TextInput & Button"
-        code={`<Stack direction="row" spacing={2} alignItems="flex-end">
-  <Select size="md" options={options} label="Category" />
+        code={`import { useState } from "react";
+import { Select, TextInput, Button } from "@rate-perfect/beaconv2";
+
+const [value, setValue] = useState("");
+
+<Stack direction="row" spacing={2} alignItems="flex-end">
+  <Select size="md" options={options} label="Category" value={value} onChange={(e) => setValue(e.target.value)} />
   <TextInput size="md" placeholder="Search..." label="Search" />
   <Button size="md" variant="filled" color="brand">Submit</Button>
 </Stack>`}
@@ -137,19 +159,26 @@ export default function SelectSection() {
       {/* With start adornment */}
       <ShowcaseCard
         title="With Icon"
-        code={`import { Select } from "@rate-perfect/beaconv2";
+        code={`import { useState } from "react";
+import { Select } from "@rate-perfect/beaconv2";
 import { Globe, MagnifyingGlass } from "@phosphor-icons/react";
+
+const [value, setValue] = useState("");
 
 <Select
   startAdornment={<Globe size={20} />}
   placeholder="Select a country"
   options={options}
+  value={value}
+  onChange={(e) => setValue(e.target.value)}
 />
 
 <Select
   startAdornment={<MagnifyingGlass size={20} />}
   placeholder="Search options..."
   options={options}
+  value={value}
+  onChange={(e) => setValue(e.target.value)}
 />`}
       >
         <Stack spacing={2} sx={{ maxWidth: 300 }}>
@@ -173,12 +202,15 @@ import { Globe, MagnifyingGlass } from "@phosphor-icons/react";
       {/* Error state */}
       <ShowcaseCard
         title="Error State"
-        code={`<Select
+        code={`import { Select } from "@rate-perfect/beaconv2";
+
+<Select
   label="Required field"
   placeholder="Select something"
   error
   errorMessage="This field is required"
   options={options}
+  value=""
 />`}
       >
         <Box sx={{ maxWidth: 300 }}>
@@ -196,10 +228,17 @@ import { Globe, MagnifyingGlass } from "@phosphor-icons/react";
       {/* With help text */}
       <ShowcaseCard
         title="With Help Text"
-        code={`<Select
+        code={`import { useState } from "react";
+import { Select } from "@rate-perfect/beaconv2";
+
+const [value, setValue] = useState("");
+
+<Select
   label="Role"
   helpText="Choose the user's primary role"
   options={options}
+  value={value}
+  onChange={(e) => setValue(e.target.value)}
 />`}
       >
         <Box sx={{ maxWidth: 300 }}>

@@ -78,10 +78,10 @@ import { Info } from "@phosphor-icons/react";
         code={`import { Tooltip, Button } from "@rate-perfect/beaconv2";
 
 <Stack direction="row" spacing={2}>
-  <Tooltip title="Top" placement="top"><Button variant="outline">Top</Button></Tooltip>
-  <Tooltip title="Bottom" placement="bottom"><Button variant="outline">Bottom</Button></Tooltip>
-  <Tooltip title="Left" placement="left"><Button variant="outline">Left</Button></Tooltip>
-  <Tooltip title="Right" placement="right"><Button variant="outline">Right</Button></Tooltip>
+  <Tooltip title="Top placement" placement="top"><Button variant="outline">Top</Button></Tooltip>
+  <Tooltip title="Bottom placement" placement="bottom"><Button variant="outline">Bottom</Button></Tooltip>
+  <Tooltip title="Left placement" placement="left"><Button variant="outline">Left</Button></Tooltip>
+  <Tooltip title="Right placement" placement="right"><Button variant="outline">Right</Button></Tooltip>
 </Stack>`}
       >
         <Stack direction="row" spacing={2} flexWrap="wrap" useFlexGap sx={{ py: 4, justifyContent: "center" }}>
@@ -98,9 +98,9 @@ import { Info } from "@phosphor-icons/react";
         code={`import { Tooltip, Button } from "@rate-perfect/beaconv2";
 
 <Stack direction="row" spacing={2}>
-  <Tooltip title="Small tooltip" size="sm"><Button variant="soft">Small</Button></Tooltip>
-  <Tooltip title="Medium tooltip" size="md"><Button variant="soft">Medium</Button></Tooltip>
-  <Tooltip title="Large tooltip" size="lg"><Button variant="soft">Large</Button></Tooltip>
+  <Tooltip title="Small tooltip with tighter padding" size="sm"><Button variant="soft">Small</Button></Tooltip>
+  <Tooltip title="Medium tooltip, the default size" size="md"><Button variant="soft">Medium</Button></Tooltip>
+  <Tooltip title="Large tooltip with more room to breathe" size="lg"><Button variant="soft">Large</Button></Tooltip>
 </Stack>`}
       >
         <Stack direction="row" spacing={2} flexWrap="wrap" useFlexGap>
@@ -175,9 +175,9 @@ import { Question } from "@phosphor-icons/react";
         code={`import { Tooltip, Button } from "@rate-perfect/beaconv2";
 
 <Stack direction="row" spacing={2}>
-  <Tooltip title="Instant" enterDelay={0}><Button variant="outline">0ms</Button></Tooltip>
-  <Tooltip title="Short delay" enterDelay={300}><Button variant="outline">300ms</Button></Tooltip>
-  <Tooltip title="Long delay" enterDelay={800}><Button variant="outline">800ms</Button></Tooltip>
+  <Tooltip title="Instant — no delay" enterDelay={0}><Button variant="outline">0ms delay</Button></Tooltip>
+  <Tooltip title="Short delay — prevents tooltip flash" enterDelay={300}><Button variant="outline">300ms delay</Button></Tooltip>
+  <Tooltip title="Long delay — for secondary info" enterDelay={800}><Button variant="outline">800ms delay</Button></Tooltip>
 </Stack>`}
       >
         <Stack direction="row" spacing={2} flexWrap="wrap" useFlexGap>

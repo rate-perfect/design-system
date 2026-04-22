@@ -17,22 +17,22 @@ import ShowcaseCard from "../components/ShowcaseCard";
 interface Product {
   id: number;
   name: string;
-  lender: string;
-  rate: number;
-  term: string;
-  ltv: string;
+  category: string;
+  score: number;
+  plan: string;
+  usage: string;
   status: "approved" | "pending" | "rejected";
 }
 
 const sampleData: Product[] = [
-  { id: 1, name: "5-Year Fixed", lender: "TD Bank", rate: 4.99, term: "60 mo", ltv: "80%", status: "approved" },
-  { id: 2, name: "3-Year Variable", lender: "RBC", rate: 5.45, term: "36 mo", ltv: "75%", status: "pending" },
-  { id: 3, name: "5-Year Variable", lender: "BMO", rate: 5.12, term: "60 mo", ltv: "80%", status: "approved" },
-  { id: 4, name: "2-Year Fixed", lender: "Scotiabank", rate: 5.89, term: "24 mo", ltv: "65%", status: "rejected" },
-  { id: 5, name: "4-Year Fixed", lender: "CIBC", rate: 5.25, term: "48 mo", ltv: "80%", status: "approved" },
-  { id: 6, name: "1-Year Fixed", lender: "National Bank", rate: 6.15, term: "12 mo", ltv: "70%", status: "pending" },
-  { id: 7, name: "7-Year Fixed", lender: "Desjardins", rate: 5.65, term: "84 mo", ltv: "75%", status: "approved" },
-  { id: 8, name: "5-Year Fixed", lender: "Equitable Bank", rate: 4.79, term: "60 mo", ltv: "80%", status: "approved" },
+  { id: 1, name: "Dashboard Pro", category: "Analytics", score: 4.99, plan: "Enterprise", usage: "80%", status: "approved" },
+  { id: 2, name: "Chat Widget", category: "Support", score: 5.45, plan: "Team", usage: "75%", status: "pending" },
+  { id: 3, name: "Auth Service", category: "Security", score: 5.12, plan: "Enterprise", usage: "80%", status: "approved" },
+  { id: 4, name: "Email API", category: "Messaging", score: 5.89, plan: "Starter", usage: "65%", status: "rejected" },
+  { id: 5, name: "File Storage", category: "Cloud", score: 5.25, plan: "Team", usage: "80%", status: "approved" },
+  { id: 6, name: "CDN Edge", category: "Network", score: 6.15, plan: "Starter", usage: "70%", status: "pending" },
+  { id: 7, name: "Search Index", category: "Data", score: 5.65, plan: "Team", usage: "75%", status: "approved" },
+  { id: 8, name: "CI Pipeline", category: "DevOps", score: 4.79, plan: "Enterprise", usage: "80%", status: "approved" },
 ];
 
 const statusColorMap: Record<string, "success" | "warning" | "error"> = {
@@ -43,10 +43,10 @@ const statusColorMap: Record<string, "success" | "warning" | "error"> = {
 
 const baseColumns: TableColumn<Product>[] = [
   { id: "name", header: "Product", accessor: (row) => row.name },
-  { id: "lender", header: "Lender", accessor: (row) => row.lender },
-  { id: "rate", header: "Rate", align: "right", render: (row) => <RateBadge rate={row.rate} size="xs" /> },
-  { id: "term", header: "Term", accessor: (row) => row.term, align: "center" },
-  { id: "ltv", header: "LTV", accessor: (row) => row.ltv, align: "center" },
+  { id: "category", header: "Category", accessor: (row) => row.category },
+  { id: "score", header: "Score", align: "right", render: (row) => <RateBadge rate={row.score} size="xs" /> },
+  { id: "plan", header: "Plan", accessor: (row) => row.plan, align: "center" },
+  { id: "usage", header: "Usage", accessor: (row) => row.usage, align: "center" },
   {
     id: "status",
     header: "Status",
@@ -60,8 +60,8 @@ const baseColumns: TableColumn<Product>[] = [
 ];
 
 const sortableColumns: TableColumn<Product>[] = baseColumns.map((col) => {
-  if (col.id === "name" || col.id === "lender") return { ...col, sortable: true, sortDirection: "asc" as const };
-  if (col.id === "rate") return { ...col, sortable: true, sortDirection: "asc" as const };
+  if (col.id === "name" || col.id === "category") return { ...col, sortable: true, sortDirection: "asc" as const };
+  if (col.id === "score") return { ...col, sortable: true, sortDirection: "asc" as const };
   return col;
 });
 
@@ -107,13 +107,13 @@ export default function TableSection() {
       {/* Default */}
       <ShowcaseCard
         title="Default"
-        code={`import { Table } from "@rate-perfect/beaconv2";
+        code={`import { Table, RateBadge } from "@rate-perfect/beaconv2";
 
 <Table
   columns={[
     { id: "name", header: "Product", accessor: (row) => row.name },
-    { id: "lender", header: "Lender", accessor: (row) => row.lender },
-    { id: "rate", header: "Rate", accessor: (row) => row.rate + "%", align: "right" },
+    { id: "category", header: "Category", accessor: (row) => row.category },
+    { id: "score", header: "Score", align: "right", render: (row) => <RateBadge rate={row.score} size="xs" /> },
   ]}
   data={data}
   rowKey={(row) => row.id}
@@ -129,13 +129,13 @@ export default function TableSection() {
       {/* Variants */}
       <ShowcaseCard
         title="Variants"
-        code={`import { Table } from "@rate-perfect/beaconv2";
+        code={`import { Table, RateBadge } from "@rate-perfect/beaconv2";
 
 const columns = [
   { id: "name", header: "Product", accessor: (row) => row.name },
-  { id: "lender", header: "Lender", accessor: (row) => row.lender },
-  { id: "rate", header: "Rate", accessor: (row) => row.rate + "%", align: "right" },
-  { id: "term", header: "Term", accessor: (row) => row.term, align: "center" },
+  { id: "category", header: "Category", accessor: (row) => row.category },
+  { id: "score", header: "Score", align: "right", render: (row) => <RateBadge rate={row.score} size="xs" /> },
+  { id: "plan", header: "Plan", accessor: (row) => row.plan, align: "center" },
 ];
 
 <Stack spacing={3}>
@@ -208,12 +208,12 @@ const columns = [
       {/* Sizes */}
       <ShowcaseCard
         title="Sizes"
-        code={`import { Table } from "@rate-perfect/beaconv2";
+        code={`import { Table, RateBadge } from "@rate-perfect/beaconv2";
 
 const columns = [
   { id: "name", header: "Product", accessor: (row) => row.name },
-  { id: "lender", header: "Lender", accessor: (row) => row.lender },
-  { id: "rate", header: "Rate", accessor: (row) => row.rate + "%", align: "right" },
+  { id: "category", header: "Category", accessor: (row) => row.category },
+  { id: "score", header: "Score", align: "right", render: (row) => <RateBadge rate={row.score} size="xs" /> },
 ];
 
 <Stack spacing={3}>
@@ -250,18 +250,26 @@ const columns = [
       {/* Custom Cell Rendering */}
       <ShowcaseCard
         title="Custom Cell Rendering"
-        code={`import { Table } from "@rate-perfect/beaconv2";
+        code={`import { Table, RateBadge, Badge } from "@rate-perfect/beaconv2";
+
+const statusColorMap = {
+  approved: "success",
+  pending: "warning",
+  rejected: "error",
+};
 
 <Table
   columns={[
     { id: "name", header: "Product", accessor: (row) => row.name },
-    { id: "lender", header: "Lender", accessor: (row) => row.lender },
-    { id: "rate", header: "Rate", align: "right", render: (row) => <RateBadge rate={row.rate} size="xs" /> },
+    { id: "category", header: "Category", accessor: (row) => row.category },
+    { id: "score", header: "Score", align: "right", render: (row) => <RateBadge rate={row.score} size="xs" /> },
+    { id: "plan", header: "Plan", accessor: (row) => row.plan, align: "center" },
+    { id: "usage", header: "Usage", accessor: (row) => row.usage, align: "center" },
     { id: "status", header: "Status", align: "center", render: (row) => (
-      <Badge variant="soft" color={statusColor[row.status]} size="sm">{row.status}</Badge>
+      <Badge variant="soft" color={statusColorMap[row.status]} size="sm">{row.status}</Badge>
     )},
   ]}
-  data={data}
+  data={sampleData}
   rowKey={(row) => row.id}
 />`}
       >
@@ -275,25 +283,25 @@ const columns = [
       {/* Headers with Icons */}
       <ShowcaseCard
         title="Headers with Icons"
-        code={`import { Table } from "@rate-perfect/beaconv2";
+        code={`import { Table, RateBadge } from "@rate-perfect/beaconv2";
 
 <Table
   columns={[
     { id: "name", header: <Box display="flex" alignItems="center" gap={1}><Gauge size={16} />Product</Box>, accessor: (row) => row.name },
-    { id: "lender", header: <Box display="flex" alignItems="center" gap={1}><Globe size={16} />Lender</Box>, accessor: (row) => row.lender },
-    { id: "rate", header: "Rate", align: "right", render: (row) => <RateBadge rate={row.rate} size="xs" /> },
-    { id: "ltv", header: <Box display="flex" alignItems="center" gap={1}><Shield size={16} />LTV</Box>, accessor: (row) => row.ltv, align: "center" },
+    { id: "category", header: <Box display="flex" alignItems="center" gap={1}><Globe size={16} />Category</Box>, accessor: (row) => row.category },
+    { id: "score", header: "Score", align: "right", render: (row) => <RateBadge rate={row.score} size="xs" /> },
+    { id: "usage", header: <Box display="flex" alignItems="center" gap={1}><Shield size={16} />Usage</Box>, accessor: (row) => row.usage, align: "center" },
   ]}
-  data={data}
+  data={sampleData}
   rowKey={(row) => row.id}
 />`}
       >
         <Table
           columns={[
             { id: "name", header: <Box display="flex" alignItems="center" gap={1}><Gauge size={16} />Product</Box>, accessor: (row: Product) => row.name },
-            { id: "lender", header: <Box display="flex" alignItems="center" gap={1}><Globe size={16} />Lender</Box>, accessor: (row: Product) => row.lender },
-            { id: "rate", header: "Rate", align: "right" as const, render: (row: Product) => <RateBadge rate={row.rate} size="xs" /> },
-            { id: "ltv", header: <Box display="flex" alignItems="center" gap={1}><Shield size={16} />LTV</Box>, accessor: (row: Product) => row.ltv, align: "center" as const },
+            { id: "category", header: <Box display="flex" alignItems="center" gap={1}><Globe size={16} />Category</Box>, accessor: (row: Product) => row.category },
+            { id: "score", header: "Score", align: "right" as const, render: (row: Product) => <RateBadge rate={row.score} size="xs" /> },
+            { id: "usage", header: <Box display="flex" alignItems="center" gap={1}><Shield size={16} />Usage</Box>, accessor: (row: Product) => row.usage, align: "center" as const },
           ]}
           data={sampleData.slice(0, 5)}
           rowKey={(row) => row.id}
@@ -303,17 +311,17 @@ const columns = [
       {/* Column Borders */}
       <ShowcaseCard
         title="Column Borders"
-        code={`import { Table } from "@rate-perfect/beaconv2";
+        code={`import { Table, RateBadge } from "@rate-perfect/beaconv2";
 
 <Table
   columns={[
     { id: "name", header: "Product", accessor: (row) => row.name },
-    { id: "lender", header: "Lender", accessor: (row) => row.lender },
-    { id: "rate", header: "Rate", accessor: (row) => row.rate + "%", align: "right" },
-    { id: "term", header: "Term", accessor: (row) => row.term, align: "center" },
-    { id: "ltv", header: "LTV", accessor: (row) => row.ltv, align: "center" },
+    { id: "category", header: "Category", accessor: (row) => row.category },
+    { id: "score", header: "Score", align: "right", render: (row) => <RateBadge rate={row.score} size="xs" /> },
+    { id: "plan", header: "Plan", accessor: (row) => row.plan, align: "center" },
+    { id: "usage", header: "Usage", accessor: (row) => row.usage, align: "center" },
   ]}
-  data={data}
+  data={sampleData}
   rowKey={(row) => row.id}
   columnBorders
 />`}
@@ -329,18 +337,26 @@ const columns = [
       {/* Sticky Columns */}
       <ShowcaseCard
         title="Sticky Columns"
-        code={`import { Table } from "@rate-perfect/beaconv2";
+        code={`import { Table, RateBadge, Badge } from "@rate-perfect/beaconv2";
+
+const statusColorMap = {
+  approved: "success",
+  pending: "warning",
+  rejected: "error",
+};
 
 <Table
   columns={[
     { id: "name", header: "Product", accessor: (row) => row.name, sticky: true, width: 140 },
-    { id: "rate", header: "Rate", accessor: (row) => row.rate + "%", align: "right", minWidth: 160 },
-    { id: "term", header: "Term", accessor: (row) => row.term, align: "center", minWidth: 160 },
-    { id: "ltv", header: "LTV", accessor: (row) => row.ltv, align: "center", minWidth: 160 },
-    { id: "lender", header: "Lender", accessor: (row) => row.lender, minWidth: 200 },
-    { id: "status", header: "Status", accessor: (row) => row.status, align: "center", minWidth: 160 },
+    { id: "score", header: "Score", align: "right", render: (row) => <RateBadge rate={row.score} size="xs" />, minWidth: 160 },
+    { id: "plan", header: "Plan", accessor: (row) => row.plan, align: "center", minWidth: 160 },
+    { id: "usage", header: "Usage", accessor: (row) => row.usage, align: "center", minWidth: 160 },
+    { id: "category", header: "Category", accessor: (row) => row.category, minWidth: 200 },
+    { id: "status", header: "Status", align: "center", minWidth: 160, render: (row) => (
+      <Badge variant="soft" color={statusColorMap[row.status]} size="sm">{row.status}</Badge>
+    )},
   ]}
-  data={data}
+  data={sampleData}
   rowKey={(row) => row.id}
   sx={{ maxWidth: 700 }}
 />`}
@@ -348,10 +364,10 @@ const columns = [
         <Table
           columns={[
             { id: "name", header: "Product", accessor: (row: Product) => row.name, sticky: true, width: 140 },
-            { id: "rate", header: "Rate", align: "right" as const, render: (row: Product) => <RateBadge rate={row.rate} size="xs" />, minWidth: 160 },
-            { id: "term", header: "Term", accessor: (row: Product) => row.term, align: "center" as const, minWidth: 160 },
-            { id: "ltv", header: "LTV", accessor: (row: Product) => row.ltv, align: "center" as const, minWidth: 160 },
-            { id: "lender", header: "Lender", accessor: (row: Product) => row.lender, minWidth: 200 },
+            { id: "score", header: "Score", align: "right" as const, render: (row: Product) => <RateBadge rate={row.score} size="xs" />, minWidth: 160 },
+            { id: "plan", header: "Plan", accessor: (row: Product) => row.plan, align: "center" as const, minWidth: 160 },
+            { id: "usage", header: "Usage", accessor: (row: Product) => row.usage, align: "center" as const, minWidth: 160 },
+            { id: "category", header: "Category", accessor: (row: Product) => row.category, minWidth: 200 },
             { id: "status", header: "Status", align: "center" as const, minWidth: 160, render: (row: Product) => (
               <Badge variant="soft" color={statusColorMap[row.status]} size="sm">{row.status}</Badge>
             )},
@@ -365,19 +381,19 @@ const columns = [
       {/* Hoverable with Row Click */}
       <ShowcaseCard
         title="Hoverable with Row Click"
-        code={`import { Table } from "@rate-perfect/beaconv2";
+        code={`import { Table, RateBadge } from "@rate-perfect/beaconv2";
 
 <Table
   columns={[
     { id: "name", header: "Product", accessor: (row) => row.name },
-    { id: "lender", header: "Lender", accessor: (row) => row.lender },
-    { id: "rate", header: "Rate", accessor: (row) => row.rate + "%", align: "right" },
-    { id: "term", header: "Term", accessor: (row) => row.term, align: "center" },
+    { id: "category", header: "Category", accessor: (row) => row.category },
+    { id: "score", header: "Score", align: "right", render: (row) => <RateBadge rate={row.score} size="xs" /> },
+    { id: "plan", header: "Plan", accessor: (row) => row.plan, align: "center" },
   ]}
-  data={data}
+  data={sampleData}
   rowKey={(row) => row.id}
   hoverable
-  onRowClick={(row) => alert(row.name)}
+  onRowClick={(row) => alert(\`Clicked: \${row.name}\`)}
 />`}
       >
         <Table
@@ -398,7 +414,7 @@ const columns = [
 
 const columns = [
   { id: "name", header: "Product", sortable: true, sortDirection: "asc", accessor: (row) => row.name },
-  { id: "rate", header: "Rate", sortable: true, sortDirection: "asc", accessor: (row) => row.rate },
+  { id: "score", header: "Score", sortable: true, sortDirection: "asc", accessor: (row) => row.score },
 ];
 
 <Table
@@ -417,18 +433,18 @@ const columns = [
       {/* Sticky Header */}
       <ShowcaseCard
         title="Sticky Header"
-        code={`import { Table } from "@rate-perfect/beaconv2";
+        code={`import { Table, RateBadge } from "@rate-perfect/beaconv2";
 
 <Box sx={{ maxHeight: 200, overflow: "auto", border: 1, borderColor: "divider", borderRadius: "8px" }}>
   <Table
     columns={[
       { id: "name", header: "Product", accessor: (row) => row.name },
-      { id: "lender", header: "Lender", accessor: (row) => row.lender },
-      { id: "rate", header: "Rate", accessor: (row) => row.rate + "%", align: "right" },
-      { id: "term", header: "Term", accessor: (row) => row.term, align: "center" },
+      { id: "category", header: "Category", accessor: (row) => row.category },
+      { id: "score", header: "Score", align: "right", render: (row) => <RateBadge rate={row.score} size="xs" /> },
+      { id: "plan", header: "Plan", accessor: (row) => row.plan, align: "center" },
     ]}
-    data={[...data, ...data]}
-    rowKey={(row, i) => i}
+    data={[...sampleData, ...sampleData]}
+    rowKey={(_row, i) => i}
     stickyHeader
     variant="plain"
   />
@@ -451,8 +467,8 @@ const columns = [
         code={`<Table
   columns={[
     { id: "name", header: "Product", accessor: (row) => row.name },
-    { id: "lender", header: "Lender", accessor: (row) => row.lender },
-    { id: "rate", header: "Rate", accessor: (row) => row.rate, align: "right" },
+    { id: "category", header: "Category", accessor: (row) => row.category },
+    { id: "score", header: "Score", accessor: (row) => row.score, align: "right" },
   ]}
   data={[]}
   emptyState={

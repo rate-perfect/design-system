@@ -89,7 +89,7 @@ export default function SkeletonSection() {
         title="Card Composition"
         code={`import { Skeleton, TextSkeleton, ButtonSkeleton } from "@rate-perfect/beaconv2";
 
-<Box sx={{ maxWidth: 360, p: 2, borderRadius: "12px", border: "1px solid var(--mui-palette-divider)" }}>
+<Box sx={{ maxWidth: 360, p: 2, borderRadius: "12px", border: 1, borderColor: "divider" }}>
   <Skeleton variant="rectangular" width="100%" height={140} sx={{ borderRadius: "8px", mb: 2 }} />
   <TextSkeleton width="70%" height={28} />
   <TextSkeleton width="100%" />
@@ -100,7 +100,7 @@ export default function SkeletonSection() {
   </Box>
 </Box>`}
       >
-        <Box sx={{ maxWidth: 360, p: 2, borderRadius: "12px", border: "1px solid var(--mui-palette-divider)" }}>
+        <Box sx={{ maxWidth: 360, p: 2, borderRadius: "12px", border: 1, borderColor: "divider" }}>
           <Skeleton variant="rectangular" width="100%" height={140} sx={{ borderRadius: "8px", mb: 2 }} />
           <TextSkeleton width="70%" height={28} />
           <TextSkeleton width="100%" />

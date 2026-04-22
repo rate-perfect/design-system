@@ -10,12 +10,12 @@ const longText =
 const shortText = "This content is short enough that it won't overflow.";
 
 const bulletList = `
-  Mortgage insurance is required for down payments under 20%.
-  Maximum amortization period is 25 years for insured mortgages.
-  Minimum credit score of 680 required for conventional products.
-  Property must be owner-occupied for insured residential products.
-  Rental income can be used at 50% for qualification purposes.
-  All applicants must provide proof of income and employment.
+  All team members have access to the shared workspace by default.
+  Storage is allocated per project, with a maximum of 10 GB each.
+  Admin users can manage permissions and billing from the dashboard.
+  Two-factor authentication is required for all organization accounts.
+  API rate limits apply: 1,000 requests per minute for Pro plans.
+  Data exports are available in CSV, JSON, and PDF formats.
 `;
 
 export default function ExpandableContentSection() {

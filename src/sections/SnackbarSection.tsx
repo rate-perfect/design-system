@@ -157,10 +157,14 @@ export default function SnackbarSection() {
       {/* Colors */}
       <ShowcaseCard
         title="Colors"
-        code={`<Stack spacing={2}>
-  {["brand", "neutral", "success", "warning", "error"].map(color => (
-    <Snackbar key={color} color={color} message={color} />
-  ))}
+        code={`import { Snackbar } from "@rate-perfect/beaconv2";
+
+<Stack spacing={2}>
+  <Snackbar color="brand" message="Brand notification" />
+  <Snackbar color="neutral" message="Neutral notification" />
+  <Snackbar color="success" message="Success notification" />
+  <Snackbar color="warning" message="Warning notification" />
+  <Snackbar color="error" message="Error notification" />
 </Stack>`}
       >
         <Stack spacing={2}>

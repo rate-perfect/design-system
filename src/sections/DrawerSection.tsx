@@ -19,12 +19,16 @@ export default function DrawerSection() {
       {/* Default */}
       <ShowcaseCard
         title="Default"
-        code={`import { Drawer, Button } from "@rate-perfect/beaconv2";
+        code={`import { useState } from "react";
+import { Drawer, Button } from "@rate-perfect/beaconv2";
+import Typography from "@mui/material/Typography";
+
+const [open, setOpen] = useState(false);
 
 <Button variant="outline" onClick={() => setOpen(true)}>Open Drawer</Button>
 
 <Drawer open={open} onClose={() => setOpen(false)} title="Default Drawer">
-  <p>This is a drawer with only the required props.</p>
+  <Typography>This is a drawer with only the required props.</Typography>
 </Drawer>`}
       >
         <Button variant="outline" onClick={() => setOpenDefault(true)}>
@@ -44,7 +48,12 @@ export default function DrawerSection() {
       {/* Sizes */}
       <ShowcaseCard
         title="Sizes"
-        code={`import { Drawer, Button } from "@rate-perfect/beaconv2";
+        code={`import { useState } from "react";
+import { Drawer, Button } from "@rate-perfect/beaconv2";
+import Stack from "@mui/material/Stack";
+import Typography from "@mui/material/Typography";
+
+const [openSize, setOpenSize] = useState<"sm" | "md" | "lg" | null>(null);
 
 <Stack direction="row" spacing={2}>
   <Button variant="outline" onClick={() => setOpenSize("sm")}>Open sm</Button>
@@ -52,8 +61,14 @@ export default function DrawerSection() {
   <Button variant="outline" onClick={() => setOpenSize("lg")}>Open lg</Button>
 </Stack>
 
+<Drawer open={openSize === "sm"} onClose={() => setOpenSize(null)} title="Drawer — sm" size="sm">
+  <Typography>This is a <strong>sm</strong> drawer. It demonstrates the 400px width.</Typography>
+</Drawer>
 <Drawer open={openSize === "md"} onClose={() => setOpenSize(null)} title="Drawer — md" size="md">
-  <p>This is a <strong>md</strong> drawer.</p>
+  <Typography>This is a <strong>md</strong> drawer. It demonstrates the 520px width.</Typography>
+</Drawer>
+<Drawer open={openSize === "lg"} onClose={() => setOpenSize(null)} title="Drawer — lg" size="lg">
+  <Typography>This is a <strong>lg</strong> drawer. It demonstrates the 640px width.</Typography>
 </Drawer>`}
       >
         <Stack direction="row" spacing={2}>
@@ -82,12 +97,16 @@ export default function DrawerSection() {
       {/* Left Anchor */}
       <ShowcaseCard
         title="Left Anchor"
-        code={`import { Drawer, Button } from "@rate-perfect/beaconv2";
+        code={`import { useState } from "react";
+import { Drawer, Button } from "@rate-perfect/beaconv2";
+import Typography from "@mui/material/Typography";
+
+const [open, setOpen] = useState(false);
 
 <Button variant="outline" onClick={() => setOpen(true)}>Open Left Drawer</Button>
 
 <Drawer open={open} onClose={() => setOpen(false)} title="Left Drawer" anchor="left">
-  <p>This drawer slides in from the left.</p>
+  <Typography>This drawer slides in from the left.</Typography>
 </Drawer>`}
       >
         <Button variant="outline" onClick={() => setOpenLeft(true)}>
@@ -108,7 +127,11 @@ export default function DrawerSection() {
       {/* With Footer */}
       <ShowcaseCard
         title="With Footer"
-        code={`import { Drawer, Button } from "@rate-perfect/beaconv2";
+        code={`import { useState } from "react";
+import { Drawer, Button } from "@rate-perfect/beaconv2";
+import Typography from "@mui/material/Typography";
+
+const [open, setOpen] = useState(false);
 
 <Button variant="outline" onClick={() => setOpen(true)}>Open with footer</Button>
 
@@ -127,7 +150,7 @@ export default function DrawerSection() {
     </>
   }
 >
-  <p>Are you sure you want to proceed?</p>
+  <Typography>Are you sure you want to proceed? This action cannot be undone.</Typography>
 </Drawer>`}
       >
         <Button variant="outline" onClick={() => setOpenFooter(true)}>

@@ -20,9 +20,16 @@ export default function CheckboxSection() {
       {/* Default */}
       <ShowcaseCard
         title="Default"
-        code={`import { Checkbox } from "@rate-perfect/beaconv2";
+        code={`import { useState } from "react";
+import { Checkbox } from "@rate-perfect/beaconv2";
 
-<Checkbox label="Accept terms and conditions" />`}
+const [checked, setChecked] = useState(true);
+
+<Checkbox
+  checked={checked}
+  onChange={(_, v) => setChecked(v)}
+  label="Accept terms and conditions"
+/>`}
       >
         <Checkbox
           checked={checked}
@@ -37,11 +44,11 @@ export default function CheckboxSection() {
         code={`import { Checkbox } from "@rate-perfect/beaconv2";
 
 <Stack spacing={1}>
-  <Checkbox color="brand" label="Brand" checked />
-  <Checkbox color="neutral" label="Neutral" checked />
-  <Checkbox color="success" label="Success" checked />
-  <Checkbox color="warning" label="Warning" checked />
-  <Checkbox color="error" label="Error" checked />
+  <Checkbox color="brand" label="Brand" defaultChecked />
+  <Checkbox color="neutral" label="Neutral" defaultChecked />
+  <Checkbox color="success" label="Success" defaultChecked />
+  <Checkbox color="warning" label="Warning" defaultChecked />
+  <Checkbox color="error" label="Error" defaultChecked />
 </Stack>`}
       >
         <Stack spacing={1}>
@@ -62,9 +69,9 @@ export default function CheckboxSection() {
         code={`import { Checkbox } from "@rate-perfect/beaconv2";
 
 <Stack spacing={1}>
-  <Checkbox size="sm" label="Small" checked />
-  <Checkbox size="md" label="Medium" checked />
-  <Checkbox size="lg" label="Large" checked />
+  <Checkbox size="sm" label="Small" defaultChecked />
+  <Checkbox size="md" label="Medium" defaultChecked />
+  <Checkbox size="lg" label="Large" defaultChecked />
 </Stack>`}
       >
         <Stack spacing={1}>
@@ -80,9 +87,9 @@ export default function CheckboxSection() {
         code={`import { Checkbox } from "@rate-perfect/beaconv2";
 
 <Stack direction="row" spacing={2}>
-  <Checkbox checked />
+  <Checkbox defaultChecked />
   <Checkbox />
-  <Checkbox color="success" checked />
+  <Checkbox color="success" defaultChecked />
 </Stack>`}
       >
         <Stack direction="row" spacing={2}>
@@ -95,12 +102,37 @@ export default function CheckboxSection() {
       {/* Indeterminate */}
       <ShowcaseCard
         title="Indeterminate"
-        code={`import { Checkbox } from "@rate-perfect/beaconv2";
+        code={`import { useState } from "react";
+import { Checkbox } from "@rate-perfect/beaconv2";
 
-<Checkbox indeterminate label="Select all" />
-<Checkbox checked label="Item 1" />
-<Checkbox label="Item 2" />
-<Checkbox checked label="Item 3" />`}
+const [items, setItems] = useState([true, false, true]);
+const allChecked = items.every(Boolean);
+const someChecked = items.some(Boolean) && !allChecked;
+
+<Stack spacing={0.5}>
+  <Checkbox
+    checked={allChecked}
+    indeterminate={someChecked}
+    onChange={(_, v) => setItems([v, v, v])}
+    label="Select all"
+  />
+  <Box sx={{ ml: 3 }}>
+    <Stack spacing={0.5}>
+      {["Item 1", "Item 2", "Item 3"].map((item, i) => (
+        <Checkbox
+          key={item}
+          checked={items[i]}
+          onChange={(_, v) => {
+            const next = [...items];
+            next[i] = v;
+            setItems(next);
+          }}
+          label={item}
+        />
+      ))}
+    </Stack>
+  </Box>
+</Stack>`}
       >
         <Stack spacing={0.5}>
           <Checkbox
@@ -134,7 +166,7 @@ export default function CheckboxSection() {
         code={`import { Checkbox } from "@rate-perfect/beaconv2";
 
 <Stack spacing={1}>
-  <Checkbox disabled checked label="Checked disabled" />
+  <Checkbox disabled defaultChecked label="Checked disabled" />
   <Checkbox disabled label="Unchecked disabled" />
 </Stack>`}
       >

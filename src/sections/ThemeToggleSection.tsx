@@ -18,9 +18,11 @@ export default function ThemeToggleSection() {
         title="Sizes"
         code={`import { ThemeToggle } from "@rate-perfect/beaconv2";
 
-<ThemeToggle size="sm" />
-<ThemeToggle size="md" />
-<ThemeToggle size="lg" />`}
+<Stack direction="row" spacing={3} alignItems="center">
+  <ThemeToggle size="sm" />
+  <ThemeToggle size="md" />
+  <ThemeToggle size="lg" />
+</Stack>`}
       >
         <Stack direction="row" spacing={3} alignItems="center">
           <ThemeToggle size="sm" />
@@ -33,10 +35,12 @@ export default function ThemeToggleSection() {
         title="Colors"
         code={`import { ThemeToggle } from "@rate-perfect/beaconv2";
 
-<ThemeToggle color="brand" />
-<ThemeToggle color="success" />
-<ThemeToggle color="warning" />
-<ThemeToggle color="error" />`}
+<Stack direction="row" spacing={3}>
+  <ThemeToggle color="brand" />
+  <ThemeToggle color="success" />
+  <ThemeToggle color="warning" />
+  <ThemeToggle color="error" />
+</Stack>`}
       >
         <Stack direction="row" spacing={3}>
           <ThemeToggle color="brand" />

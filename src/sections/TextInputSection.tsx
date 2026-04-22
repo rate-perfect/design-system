@@ -18,7 +18,7 @@ export default function TextInputSection() {
         title="Default"
         code={`import { TextInput } from "@rate-perfect/beaconv2";
 
-<TextInput label="Label" placeholder="Enter text..." />`}
+<TextInput label="Label" placeholder="Enter text..." sx={{ maxWidth: 360 }} />`}
       >
         <TextInput label="Label" placeholder="Enter text..." sx={{ maxWidth: 360 }} />
       </ShowcaseCard>
@@ -121,15 +121,19 @@ import { MagnifyingGlass, Envelope, Eye } from "@phosphor-icons/react";
       {/* Clearable */}
       <ShowcaseCard
         title="Clearable"
-        code={`import { TextInput } from "@rate-perfect/beaconv2";
+        code={`import { useState } from "react";
+import { TextInput } from "@rate-perfect/beaconv2";
+
+const [clearableValue, setClearableValue] = useState("Hello world");
 
 <TextInput
   label="Clearable"
   clearable
-  value={value}
-  onChange={(e) => setValue(e.target.value)}
-  onClear={() => setValue("")}
+  value={clearableValue}
+  onChange={(e) => setClearableValue(e.target.value)}
+  onClear={() => setClearableValue("")}
   placeholder="Type something..."
+  sx={{ maxWidth: 360 }}
 />`}
       >
         <TextInput

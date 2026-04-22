@@ -1,7 +1,9 @@
+import { useRef, useEffect, useState as useReactState } from "react";
 import Box from "@mui/material/Box";
 import Stack from "@mui/material/Stack";
 import Typography from "@mui/material/Typography";
 import { useTheme } from "@rate-perfect/beaconv2";
+import { useColorScheme } from "@mui/material/styles";
 import type { BrandColorName, BrandColorScale } from "@rate-perfect/beaconv2";
 import ShowcaseCard from "../components/ShowcaseCard";
 
@@ -21,10 +23,31 @@ const scaleKeys: (keyof BrandColorScale)[] = [
   "fg",
 ];
 
-function Swatch({ color, label }: { color: string; label: string }) {
+function rgbToHex(rgb: string): string {
+  const match = rgb.match(/rgba?\((\d+),\s*(\d+),\s*(\d+)/);
+  if (!match) return rgb;
+  const [, r, g, b] = match;
   return (
-    <Stack alignItems="center" spacing={0.5} sx={{ minWidth: 72 }}>
+    "#" +
+    [r, g, b].map((v) => Number(v).toString(16).padStart(2, "0")).join("")
+  );
+}
+
+function Swatch({ color, label }: { color: string; label: string }) {
+  const ref = useRef<HTMLDivElement>(null);
+  const [hex, setHex] = useReactState("");
+  const { mode } = useColorScheme();
+
+  useEffect(() => {
+    if (!ref.current) return;
+    const computed = getComputedStyle(ref.current).backgroundColor;
+    setHex(rgbToHex(computed));
+  }, [color, mode]);
+
+  return (
+    <Stack alignItems="center" spacing={0.5} sx={{ minWidth: 84 }}>
       <Box
+        ref={ref}
         sx={{
           width: 48,
           height: 48,
@@ -34,9 +57,14 @@ function Swatch({ color, label }: { color: string; label: string }) {
           borderColor: "divider",
         }}
       />
-      <Typography variant="caption" color="text.secondary" sx={{ fontSize: 11, textAlign: "center" }}>
+      <Typography variant="caption" color="text.secondary" sx={{ fontSize: 11, textAlign: "center", fontWeight: 500 }}>
         {label}
       </Typography>
+      {hex && (
+        <Typography variant="caption" sx={{ fontSize: 10, textAlign: "center", fontFamily: "monospace", color: "text.secondary", opacity: 0.7 }}>
+          {hex}
+        </Typography>
+      )}
     </Stack>
   );
 }

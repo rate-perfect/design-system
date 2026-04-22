@@ -72,12 +72,24 @@ export default function SegmentedControlSection() {
       {/* Variants */}
       <ShowcaseCard
         title="Variants"
-        code={`import { SegmentedControl } from "@rate-perfect/beaconv2";
+        code={`import { useState } from "react";
+import Stack from "@mui/material/Stack";
+import { SegmentedControl } from "@rate-perfect/beaconv2";
+
+const options = [
+  { value: "all", label: "All" },
+  { value: "active", label: "Active" },
+  { value: "inactive", label: "Inactive" },
+];
+
+const [outline, setOutline] = useState("all");
+const [filled, setFilled] = useState("all");
+const [soft, setSoft] = useState("all");
 
 <Stack spacing={2}>
-  <SegmentedControl variant="outline" ... />
-  <SegmentedControl variant="filled" ... />
-  <SegmentedControl variant="soft" ... />
+  <SegmentedControl variant="outline" options={options} value={outline} onChange={setOutline} />
+  <SegmentedControl variant="filled" options={options} value={filled} onChange={setFilled} />
+  <SegmentedControl variant="soft" options={options} value={soft} onChange={setSoft} />
 </Stack>`}
       >
         <Stack spacing={2}>
@@ -98,12 +110,24 @@ export default function SegmentedControlSection() {
       {/* Sizes */}
       <ShowcaseCard
         title="Sizes"
-        code={`import { SegmentedControl } from "@rate-perfect/beaconv2";
+        code={`import { useState } from "react";
+import Stack from "@mui/material/Stack";
+import { SegmentedControl } from "@rate-perfect/beaconv2";
+
+const options = [
+  { value: "all", label: "All" },
+  { value: "active", label: "Active" },
+  { value: "inactive", label: "Inactive" },
+];
+
+const [sm, setSm] = useState("all");
+const [md, setMd] = useState("all");
+const [lg, setLg] = useState("all");
 
 <Stack spacing={2}>
-  <SegmentedControl size="sm" ... />
-  <SegmentedControl size="md" ... />
-  <SegmentedControl size="lg" ... />
+  <SegmentedControl size="sm" options={options} value={sm} onChange={setSm} />
+  <SegmentedControl size="md" options={options} value={md} onChange={setMd} />
+  <SegmentedControl size="lg" options={options} value={lg} onChange={setLg} />
 </Stack>`}
       >
         <Stack spacing={2}>
@@ -124,11 +148,28 @@ export default function SegmentedControlSection() {
       {/* Colors */}
       <ShowcaseCard
         title="Colors"
-        code={`import { SegmentedControl } from "@rate-perfect/beaconv2";
+        code={`import { useState } from "react";
+import Stack from "@mui/material/Stack";
+import { SegmentedControl } from "@rate-perfect/beaconv2";
+
+const options = [
+  { value: "all", label: "All" },
+  { value: "active", label: "Active" },
+  { value: "inactive", label: "Inactive" },
+];
+
+const [brand, setBrand] = useState("all");
+const [neutral, setNeutral] = useState("all");
+const [success, setSuccess] = useState("all");
+const [warning, setWarning] = useState("all");
+const [error, setError] = useState("all");
 
 <Stack spacing={2}>
-  <SegmentedControl color="brand" variant="filled" ... />
-  <SegmentedControl color="success" variant="filled" ... />
+  <SegmentedControl variant="filled" color="brand" options={options} value={brand} onChange={setBrand} />
+  <SegmentedControl variant="filled" color="neutral" options={options} value={neutral} onChange={setNeutral} />
+  <SegmentedControl variant="filled" color="success" options={options} value={success} onChange={setSuccess} />
+  <SegmentedControl variant="filled" color="warning" options={options} value={warning} onChange={setWarning} />
+  <SegmentedControl variant="filled" color="error" options={options} value={error} onChange={setError} />
 </Stack>`}
       >
         <Stack spacing={2}>
@@ -150,11 +191,23 @@ export default function SegmentedControlSection() {
       {/* Radius */}
       <ShowcaseCard
         title="Radius"
-        code={`import { SegmentedControl } from "@rate-perfect/beaconv2";
+        code={`import { useState } from "react";
+import Stack from "@mui/material/Stack";
+import { SegmentedControl } from "@rate-perfect/beaconv2";
+
+const options = [
+  { value: "all", label: "All" },
+  { value: "active", label: "Active" },
+  { value: "inactive", label: "Inactive" },
+];
+
+const [value, setValue] = useState("all");
 
 <Stack spacing={2}>
-  <SegmentedControl radius="sm" ... />
-  <SegmentedControl radius="full" ... />
+  <SegmentedControl radius="sm" options={options} value={value} onChange={setValue} />
+  <SegmentedControl radius="md" options={options} value={value} onChange={setValue} />
+  <SegmentedControl radius="lg" options={options} value={value} onChange={setValue} />
+  <SegmentedControl radius="full" options={options} value={value} onChange={setValue} />
 </Stack>`}
       >
         <Stack spacing={2}>
@@ -175,7 +228,17 @@ export default function SegmentedControlSection() {
       {/* Bordered */}
       <ShowcaseCard
         title="Bordered"
-        code={`import { SegmentedControl } from "@rate-perfect/beaconv2";
+        code={`import { useState } from "react";
+import Stack from "@mui/material/Stack";
+import { SegmentedControl } from "@rate-perfect/beaconv2";
+
+const options = [
+  { value: "all", label: "All" },
+  { value: "active", label: "Active" },
+  { value: "inactive", label: "Inactive" },
+];
+
+const [value, setValue] = useState("all");
 
 <Stack spacing={2}>
   <SegmentedControl options={options} value={value} onChange={setValue} />

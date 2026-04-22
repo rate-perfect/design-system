@@ -21,7 +21,7 @@ export default function DatePickerSection() {
         title="Default"
         code={`import { DatePicker } from "@rate-perfect/beaconv2";
 
-<DatePicker label="Date" value={value} onChange={setValue} />`}
+<DatePicker label="Date" value={value} onChange={setValue} sx={{ maxWidth: 360 }} />`}
       >
         <DatePicker label="Date" value={value1} onChange={setValue1} sx={{ maxWidth: 360 }} />
       </ShowcaseCard>

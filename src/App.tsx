@@ -2,7 +2,7 @@ import { useState } from "react";
 import Box from "@mui/material/Box";
 import Stack from "@mui/material/Stack";
 import MuiTypography from "@mui/material/Typography";
-import { ThemeToggle } from "@rate-perfect/beaconv2";
+import { ThemeToggle, useTheme } from "@rate-perfect/beaconv2";
 import ButtonSection from "./sections/ButtonSection";
 import TypographySection from "./sections/TypographySection";
 import BadgeSection from "./sections/BadgeSection";
@@ -151,6 +151,7 @@ const sectionMap: Record<ComponentId, React.ComponentType> = {
 
 export const App = () => {
   const [activeId, setActiveId] = useState<ComponentId>("palette");
+  const theme = useTheme();
 
   const ActiveSection = sectionMap[activeId];
 
@@ -212,10 +213,10 @@ export const App = () => {
                     cursor: "pointer",
                     fontWeight: activeId === id ? 600 : 400,
                     fontSize: "0.875rem",
-                    color: activeId === id ? "var(--mui-brand-brand-main)" : "text.secondary",
-                    bgcolor: activeId === id ? "var(--mui-brand-brand-softBg)" : "transparent",
+                    color: activeId === id ? theme.brand.brand.main : "text.secondary",
+                    bgcolor: activeId === id ? theme.brand.brand.softBg : "transparent",
                     "&:hover": {
-                      bgcolor: activeId === id ? "var(--mui-brand-brand-softBg)" : "action.hover",
+                      bgcolor: activeId === id ? theme.brand.brand.softBg : "action.hover",
                     },
                     transition: "background-color 0.15s, color 0.15s",
                   }}

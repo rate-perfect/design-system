@@ -22,7 +22,10 @@ export default function MenuSection() {
       {/* Default */}
       <ShowcaseCard
         title="Default"
-        code={`import { Menu, MenuItem, Button } from "@rate-perfect/beaconv2";
+        code={`import { useState } from "react";
+import { Menu, MenuItem, Button } from "@rate-perfect/beaconv2";
+
+const [anchor, setAnchor] = useState<null | HTMLElement>(null);
 
 <Button variant="outline" onClick={(e) => setAnchor(e.currentTarget)}>
   Open Menu
@@ -47,7 +50,11 @@ export default function MenuSection() {
       {/* With Icons */}
       <ShowcaseCard
         title="With Icons"
-        code={`import { Menu, MenuItem, Button } from "@rate-perfect/beaconv2";
+        code={`import { useState } from "react";
+import { Menu, MenuItem, Button } from "@rate-perfect/beaconv2";
+import { PencilSimple, Copy, Archive, Trash } from "@phosphor-icons/react";
+
+const [anchor, setAnchor] = useState<null | HTMLElement>(null);
 
 <Button variant="outline" onClick={(e) => setAnchor(e.currentTarget)}>
   Actions
@@ -90,20 +97,24 @@ export default function MenuSection() {
       {/* With Selected */}
       <ShowcaseCard
         title="With Selected State"
-        code={`import { Menu, MenuItem, Button } from "@rate-perfect/beaconv2";
+        code={`import { useState } from "react";
+import { Menu, MenuItem, Button } from "@rate-perfect/beaconv2";
+
+const [anchor, setAnchor] = useState<null | HTMLElement>(null);
+const [selected, setSelected] = useState("option-1");
 
 <Button variant="outline" onClick={(e) => setAnchor(e.currentTarget)}>
   Sort by
 </Button>
 
 <Menu open={Boolean(anchor)} anchorEl={anchor} onClose={() => setAnchor(null)}>
-  <MenuItem selected={selected === "name"} onClick={() => { setSelected("name"); setAnchor(null); }}>
+  <MenuItem selected={selected === "option-1"} onClick={() => { setSelected("option-1"); setAnchor(null); }}>
     Name
   </MenuItem>
-  <MenuItem selected={selected === "date"} onClick={() => { setSelected("date"); setAnchor(null); }}>
+  <MenuItem selected={selected === "option-2"} onClick={() => { setSelected("option-2"); setAnchor(null); }}>
     Date
   </MenuItem>
-  <MenuItem selected={selected === "rating"} onClick={() => { setSelected("rating"); setAnchor(null); }}>
+  <MenuItem selected={selected === "option-3"} onClick={() => { setSelected("option-3"); setAnchor(null); }}>
     Rating
   </MenuItem>
 </Menu>`}
@@ -137,7 +148,11 @@ export default function MenuSection() {
       {/* Avatar Trigger */}
       <ShowcaseCard
         title="Avatar as Trigger"
-        code={`import { Menu, MenuItem, Avatar } from "@rate-perfect/beaconv2";
+        code={`import { useState } from "react";
+import { Menu, MenuItem, Avatar } from "@rate-perfect/beaconv2";
+import { User, Gear, SignOut } from "@phosphor-icons/react";
+
+const [anchor, setAnchor] = useState<null | HTMLElement>(null);
 
 <Avatar
   name="Justin Alexander"

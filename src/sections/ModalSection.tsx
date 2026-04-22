@@ -19,12 +19,16 @@ export default function ModalSection() {
       {/* Default */}
       <ShowcaseCard
         title="Default"
-        code={`import { Modal, Button } from "@rate-perfect/beaconv2";
+        code={`import { useState } from "react";
+import { Modal, Button } from "@rate-perfect/beaconv2";
+import Typography from "@mui/material/Typography";
+
+const [open, setOpen] = useState(false);
 
 <Button variant="outline" onClick={() => setOpen(true)}>Open Modal</Button>
 
 <Modal open={open} onClose={() => setOpen(false)} title="Default Modal">
-  <p>This is a modal with only the required props.</p>
+  <Typography>This is a modal with only the required props.</Typography>
 </Modal>`}
       >
         <Button variant="outline" onClick={() => setOpenDefault(true)}>
@@ -44,25 +48,28 @@ export default function ModalSection() {
       {/* Sizes */}
       <ShowcaseCard
         title="Sizes"
-        code={`import { Modal, Button } from "@rate-perfect/beaconv2";
+        code={`import { useState } from "react";
+import { Modal, Button } from "@rate-perfect/beaconv2";
+import Stack from "@mui/material/Stack";
+import Typography from "@mui/material/Typography";
 
-<>
-  <Stack direction="row" spacing={2}>
-    <Button variant="outline" onClick={() => setOpenSize("sm")}>Open sm</Button>
-    <Button variant="outline" onClick={() => setOpenSize("md")}>Open md</Button>
-    <Button variant="outline" onClick={() => setOpenSize("lg")}>Open lg</Button>
-  </Stack>
+const [openSize, setOpenSize] = useState<"sm" | "md" | "lg" | null>(null);
 
-  <Modal open={openSize === "sm"} onClose={() => setOpenSize(null)} title="Modal — sm" size="sm">
-    <p>This is a <strong>sm</strong> modal. It demonstrates the 400px max width.</p>
-  </Modal>
-  <Modal open={openSize === "md"} onClose={() => setOpenSize(null)} title="Modal — md" size="md">
-    <p>This is a <strong>md</strong> modal. It demonstrates the 520px max width.</p>
-  </Modal>
-  <Modal open={openSize === "lg"} onClose={() => setOpenSize(null)} title="Modal — lg" size="lg">
-    <p>This is a <strong>lg</strong> modal. It demonstrates the 640px max width.</p>
-  </Modal>
-</>`}
+<Stack direction="row" spacing={2}>
+  <Button variant="outline" onClick={() => setOpenSize("sm")}>Open sm</Button>
+  <Button variant="outline" onClick={() => setOpenSize("md")}>Open md</Button>
+  <Button variant="outline" onClick={() => setOpenSize("lg")}>Open lg</Button>
+</Stack>
+
+<Modal open={openSize === "sm"} onClose={() => setOpenSize(null)} title="Modal — sm" size="sm">
+  <Typography>This is a <strong>sm</strong> modal. It demonstrates the 440px max width.</Typography>
+</Modal>
+<Modal open={openSize === "md"} onClose={() => setOpenSize(null)} title="Modal — md" size="md">
+  <Typography>This is a <strong>md</strong> modal. It demonstrates the 560px max width.</Typography>
+</Modal>
+<Modal open={openSize === "lg"} onClose={() => setOpenSize(null)} title="Modal — lg" size="lg">
+  <Typography>This is a <strong>lg</strong> modal. It demonstrates the 720px max width.</Typography>
+</Modal>`}
       >
         <Stack direction="row" spacing={2}>
           {sizes.map((s) => (
@@ -91,26 +98,30 @@ export default function ModalSection() {
       {/* With Footer */}
       <ShowcaseCard
         title="With Footer"
-        code={`import { Modal, Button } from "@rate-perfect/beaconv2";
+        code={`import { useState } from "react";
+import { Modal, Button } from "@rate-perfect/beaconv2";
+import Typography from "@mui/material/Typography";
 
-<Button variant="outline" onClick={() => setOpenFooter(true)}>Open with footer</Button>
+const [open, setOpen] = useState(false);
+
+<Button variant="outline" onClick={() => setOpen(true)}>Open with footer</Button>
 
 <Modal
-  open={openFooter}
-  onClose={() => setOpenFooter(false)}
+  open={open}
+  onClose={() => setOpen(false)}
   title="Confirm Action"
   footer={
     <>
-      <Button variant="outline" color="neutral" onClick={() => setOpenFooter(false)}>
+      <Button variant="outline" color="neutral" onClick={() => setOpen(false)}>
         Cancel
       </Button>
-      <Button color="brand" onClick={() => setOpenFooter(false)}>
+      <Button color="brand" onClick={() => setOpen(false)}>
         Confirm
       </Button>
     </>
   }
 >
-  <p>Are you sure you want to proceed? This action cannot be undone.</p>
+  <Typography>Are you sure you want to proceed? This action cannot be undone.</Typography>
 </Modal>`}
       >
         <Button variant="outline" onClick={() => setOpenFooter(true)}>
@@ -140,27 +151,31 @@ export default function ModalSection() {
       {/* Modal + TextInput Combo */}
       <ShowcaseCard
         title="Modal + TextInput"
-        code={`import { Modal, Button, TextInput } from "@rate-perfect/beaconv2";
+        code={`import { useState } from "react";
+import { Modal, Button, TextInput } from "@rate-perfect/beaconv2";
+import Stack from "@mui/material/Stack";
 
-<Button variant="outline" onClick={() => setOpenCombo(true)}>Create new list</Button>
+const [open, setOpen] = useState(false);
+
+<Button variant="outline" onClick={() => setOpen(true)}>Create new list</Button>
 
 <Modal
-  open={openCombo}
-  onClose={() => setOpenCombo(false)}
+  open={open}
+  onClose={() => setOpen(false)}
   title="Create List"
   footer={
     <>
-      <Button variant="outline" color="neutral" onClick={() => setOpenCombo(false)}>
+      <Button variant="outline" color="neutral" onClick={() => setOpen(false)}>
         Cancel
       </Button>
-      <Button color="brand" onClick={() => setOpenCombo(false)}>
+      <Button color="brand" onClick={() => setOpen(false)}>
         Create
       </Button>
     </>
   }
 >
   <Stack spacing={2}>
-    <TextInput label="List Name" fullWidth placeholder="My Dunk Collection" />
+    <TextInput label="List Name" fullWidth placeholder="My Project" />
     <TextInput label="Description" fullWidth multiline rows={3} placeholder="Optional description..." />
   </Stack>
 </Modal>`}
@@ -184,7 +199,7 @@ export default function ModalSection() {
           }
         >
           <Stack spacing={2}>
-            <TextInput label="List Name" fullWidth placeholder="My Dunk Collection" />
+            <TextInput label="List Name" fullWidth placeholder="My Project" />
             <TextInput
               label="Description"
               fullWidth

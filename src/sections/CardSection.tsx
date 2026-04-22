@@ -227,34 +227,34 @@ export default function CardSection() {
 <Card variant="filled" radius="lg" elevated hoverable>
   <ContentRow
     size="lg"
-    label="5-Year Fixed"
-    value={<RateBadge rate={4.99} size="sm" />}
+    label="Pro Plan"
+    value={<RateBadge rate={9.99} size="sm" />}
   />
   <Divider spacing="0.75rem" />
   <Stack spacing={1}>
-    <ContentRow size="sm" label="Lender" value="TD Bank" />
-    <ContentRow size="sm" label="Term" value="60 months" />
-    <ContentRow size="sm" label="LTV" value="80%" />
-    <ContentRow size="sm" label="Status" value={<Badge variant="soft" color="success" size="sm">Approved</Badge>} />
+    <ContentRow size="sm" label="Provider" value="Acme Inc." />
+    <ContentRow size="sm" label="Billing" value="Monthly" />
+    <ContentRow size="sm" label="Users" value="Up to 10" />
+    <ContentRow size="sm" label="Status" value={<Badge variant="soft" color="success" size="sm">Active</Badge>} />
   </Stack>
   <Box mt={2}>
     <Button size="sm" fullWidth>View Details</Button>
   </Box>
 </Card>`}
       >
-        <Box sx={{ maxWidth: 360 }}>
+        <Box sx={{ maxWidth: 480 }}>
           <Card variant="filled" radius="lg" elevated hoverable>
             <ContentRow
               size="lg"
-              label="5-Year Fixed"
-              value={<RateBadge rate={4.99} size="sm" />}
+              label="Pro Plan"
+              value={<RateBadge rate={9.99} size="sm" />}
             />
             <Divider spacing="0.75rem" />
             <Stack spacing={1}>
-              <ContentRow size="sm" label="Lender" value="TD Bank" />
-              <ContentRow size="sm" label="Term" value="60 months" />
-              <ContentRow size="sm" label="LTV" value="80%" />
-              <ContentRow size="sm" label="Status" value={<Badge variant="soft" color="success" size="sm">Approved</Badge>} />
+              <ContentRow size="sm" label="Provider" value="Acme Inc." />
+              <ContentRow size="sm" label="Billing" value="Monthly" />
+              <ContentRow size="sm" label="Users" value="Up to 10" />
+              <ContentRow size="sm" label="Status" value={<Badge variant="soft" color="success" size="sm">Active</Badge>} />
             </Stack>
             <Box sx={{ mt: 2 }}>
               <Button size="sm" fullWidth>View Details</Button>

@@ -12,20 +12,20 @@ const radii: ToggleButtonRadius[] = ["sm", "md", "lg", "full"];
 
 export default function ToggleButtonSection() {
   const [selected1, setSelected1] = useState(false);
-  const [selectedTerms, setSelectedTerms] = useState<string[]>(["3-year"]);
-  const [selectedTypes, setSelectedTypes] = useState<string[]>(["fixed"]);
+  const [selectedTags, setSelectedTerms] = useState<string[]>(["Angular"]);
+  const [selectedViews, setSelectedViews] = useState<string[]>(["grid"]);
   const [selectedColors, setSelectedColors] = useState<Record<string, boolean>>({
     brand: true, neutral: false, success: true, warning: false, error: false,
   });
 
-  const toggleTerm = (term: string) => {
+  const toggleTag = (term: string) => {
     setSelectedTerms((prev) =>
       prev.includes(term) ? prev.filter((t) => t !== term) : [...prev, term],
     );
   };
 
-  const toggleType = (type: string) => {
-    setSelectedTypes((prev) =>
+  const toggleView = (type: string) => {
+    setSelectedViews((prev) =>
       prev.includes(type) ? prev.filter((t) => t !== type) : [...prev, type],
     );
   };
@@ -35,7 +35,10 @@ export default function ToggleButtonSection() {
       {/* Default */}
       <ShowcaseCard
         title="Default"
-        code={`import { ToggleButton } from "@rate-perfect/beaconv2";
+        code={`import { useState } from "react";
+import { ToggleButton } from "@rate-perfect/beaconv2";
+
+const [selected, setSelected] = useState(false);
 
 <ToggleButton selected={selected} onClick={() => setSelected(!selected)}>
   Toggle me
@@ -90,14 +93,28 @@ export default function ToggleButtonSection() {
       {/* Colors */}
       <ShowcaseCard
         title="Colors"
-        code={`import { ToggleButton } from "@rate-perfect/beaconv2";
+        code={`import { useState } from "react";
+import Stack from "@mui/material/Stack";
+import { ToggleButton } from "@rate-perfect/beaconv2";
 
-<Stack direction="row" spacing={1}>
-  <ToggleButton color="brand" selected>Brand</ToggleButton>
-  <ToggleButton color="success" selected>Success</ToggleButton>
-  <ToggleButton color="warning" selected>Warning</ToggleButton>
-  <ToggleButton color="error" selected>Error</ToggleButton>
-  <ToggleButton color="neutral" selected>Neutral</ToggleButton>
+const colors = ["brand", "neutral", "success", "warning", "error"];
+const [selectedColors, setSelectedColors] = useState({
+  brand: true, neutral: false, success: true, warning: false, error: false,
+});
+
+<Stack direction="row" spacing={1} flexWrap="wrap">
+  {colors.map((c) => (
+    <ToggleButton
+      key={c}
+      color={c}
+      selected={selectedColors[c]}
+      onClick={() =>
+        setSelectedColors((prev) => ({ ...prev, [c]: !prev[c] }))
+      }
+    >
+      {c.charAt(0).toUpperCase() + c.slice(1)}
+    </ToggleButton>
+  ))}
 </Stack>`}
       >
         <Stack direction="row" spacing={1} flexWrap="wrap">
@@ -119,20 +136,39 @@ export default function ToggleButtonSection() {
       {/* Ghost Variant */}
       <ShowcaseCard
         title="Ghost Variant"
-        code={`import { ToggleButton } from "@rate-perfect/beaconv2";
+        code={`import { useState } from "react";
+import Stack from "@mui/material/Stack";
+import { ToggleButton } from "@rate-perfect/beaconv2";
+
+const terms = ["React", "Vue", "Angular", "Svelte", "Solid"];
+const [selectedTags, setSelectedTerms] = useState(["Angular"]);
+
+const toggleTag = (term) => {
+  setSelectedTerms((prev) =>
+    prev.includes(term) ? prev.filter((t) => t !== term) : [...prev, term],
+  );
+};
 
 <Stack direction="row" spacing={1}>
-  <ToggleButton variant="ghost" selected>Selected</ToggleButton>
-  <ToggleButton variant="ghost">Unselected</ToggleButton>
+  {terms.map((term) => (
+    <ToggleButton
+      key={term}
+      variant="ghost"
+      selected={selectedTags.includes(term)}
+      onClick={() => toggleTag(term)}
+    >
+      {term}
+    </ToggleButton>
+  ))}
 </Stack>`}
       >
         <Stack direction="row" spacing={1}>
-          {["1-year", "2-year", "3-year", "4-year", "5-year"].map((term) => (
+          {["React", "Vue", "Angular", "Svelte", "Solid"].map((term) => (
             <ToggleButton
               key={term}
               variant="ghost"
-              selected={selectedTerms.includes(term)}
-              onClick={() => toggleTerm(term)}
+              selected={selectedTags.includes(term)}
+              onClick={() => toggleTag(term)}
             >
               {term}
             </ToggleButton>
@@ -140,17 +176,28 @@ export default function ToggleButtonSection() {
         </Stack>
       </ShowcaseCard>
 
-      {/* Filter Example — Terms */}
+      {/* Filter Example — Tags */}
       <ShowcaseCard
-        title="Filter Example — Terms"
-        code={`import { ToggleButton } from "@rate-perfect/beaconv2";
+        title="Filter Example — Tags"
+        code={`import { useState } from "react";
+import Stack from "@mui/material/Stack";
+import { ToggleButton } from "@rate-perfect/beaconv2";
+
+const terms = ["React", "Vue", "Angular", "Svelte", "Solid"];
+const [selectedTags, setSelectedTerms] = useState(["Angular"]);
+
+const toggleTag = (term) => {
+  setSelectedTerms((prev) =>
+    prev.includes(term) ? prev.filter((t) => t !== term) : [...prev, term],
+  );
+};
 
 <Stack direction="row" spacing={1} flexWrap="wrap">
-  {["1-year", "2-year", "3-year", "4-year", "5-year"].map((term) => (
+  {terms.map((term) => (
     <ToggleButton
       key={term}
-      selected={selected.includes(term)}
-      onClick={() => toggle(term)}
+      selected={selectedTags.includes(term)}
+      onClick={() => toggleTag(term)}
     >
       {term}
     </ToggleButton>
@@ -158,11 +205,11 @@ export default function ToggleButtonSection() {
 </Stack>`}
       >
         <Stack direction="row" spacing={1} flexWrap="wrap">
-          {["1-year", "2-year", "3-year", "4-year", "5-year"].map((term) => (
+          {["React", "Vue", "Angular", "Svelte", "Solid"].map((term) => (
             <ToggleButton
               key={term}
-              selected={selectedTerms.includes(term)}
-              onClick={() => toggleTerm(term)}
+              selected={selectedTags.includes(term)}
+              onClick={() => toggleTag(term)}
             >
               {term}
             </ToggleButton>
@@ -173,24 +220,42 @@ export default function ToggleButtonSection() {
       {/* Filter Example — Full Width */}
       <ShowcaseCard
         title="Filter Example — Full Width"
-        code={`import { ToggleButton } from "@rate-perfect/beaconv2";
+        code={`import { useState } from "react";
+import Stack from "@mui/material/Stack";
+import { ToggleButton } from "@rate-perfect/beaconv2";
 
-<Stack direction="row" spacing={1} sx={{ maxWidth: 360 }}>
-  <ToggleButton fullWidth selected={selected.includes("fixed")} onClick={() => toggle("fixed")}>
-    Fixed
+const [selectedViews, setSelectedViews] = useState(["grid"]);
+
+const toggleView = (type) => {
+  setSelectedViews((prev) =>
+    prev.includes(type) ? prev.filter((t) => t !== type) : [...prev, type],
+  );
+};
+
+<Stack direction="row" spacing={1}>
+  <ToggleButton
+    fullWidth
+    selected={selectedViews.includes("grid")}
+    onClick={() => toggleView("grid")}
+  >
+    Grid
   </ToggleButton>
-  <ToggleButton fullWidth selected={selected.includes("variable")} onClick={() => toggle("variable")}>
-    Variable
+  <ToggleButton
+    fullWidth
+    selected={selectedViews.includes("list")}
+    onClick={() => toggleView("list")}
+  >
+    List
   </ToggleButton>
 </Stack>`}
       >
-        <Stack direction="row" spacing={1} sx={{ maxWidth: 360 }}>
-          {["fixed", "variable"].map((type) => (
+        <Stack direction="row" spacing={1}>
+          {["grid", "list"].map((type) => (
             <ToggleButton
               key={type}
               fullWidth
-              selected={selectedTypes.includes(type)}
-              onClick={() => toggleType(type)}
+              selected={selectedViews.includes(type)}
+              onClick={() => toggleView(type)}
             >
               {type.charAt(0).toUpperCase() + type.slice(1)}
             </ToggleButton>
@@ -204,9 +269,14 @@ export default function ToggleButtonSection() {
         code={`import { ToggleButton } from "@rate-perfect/beaconv2";
 import { CheckCircle } from "@phosphor-icons/react";
 
-<ToggleButton selected startIcon={<CheckCircle size="1em" />}>
-  Verified
-</ToggleButton>`}
+<Stack direction="row" spacing={1}>
+  <ToggleButton selected color="success" startIcon={<CheckCircle size="1em" />}>
+    Verified
+  </ToggleButton>
+  <ToggleButton color="success" startIcon={<CheckCircle size="1em" />}>
+    Unverified
+  </ToggleButton>
+</Stack>`}
       >
         <Stack direction="row" spacing={1}>
           <ToggleButton selected color="success" startIcon={<CheckCircle size="1em" />}>

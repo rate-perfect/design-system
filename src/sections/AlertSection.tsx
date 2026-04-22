@@ -125,10 +125,10 @@ import { Info, WarningCircle } from "@phosphor-icons/react";
         code={`import { Alert } from "@rate-perfect/beaconv2";
 
 <Stack spacing={2}>
-  <Alert onClose={() => alert("closed!")}>
+  <Alert onClose={() => {}}>
     This alert can be dismissed.
   </Alert>
-  <Alert color="error" variant="filled" onClose={() => alert("closed!")}>
+  <Alert color="error" variant="filled" onClose={() => {}}>
     Critical error — click X to dismiss.
   </Alert>
 </Stack>`}
